@@ -57,4 +57,33 @@ Player:
 	BaseAttackNotifier:
 	PlayerStatistics:
 	PlaceBeacon:
-
+	ProvidesTechPrerequisite@TechLevel1:
+		Name: Tech Level 1
+		Prerequisite: techlevel1
+	ProvidesTechPrerequisite@TechLevel2:
+		Name: Tech Level 2
+		Prerequisite: techlevel1, techlevel2
+	ProvidesTechPrerequisite@TechLevel3:
+		Name: Tech Level 3
+		Prerequisite: techlevel1, techlevel2, techlevel3
+	ProvidesTechPrerequisite@TechLevel4:
+		Name: Tech Level 4
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4
+	ProvidesTechPrerequisite@TechLevel5:
+		Name: Tech Level 5
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5
+	ProvidesTechPrerequisite@TechLevel6:
+		Name: Tech Level 6
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5, techlevel6
+	ProvidesTechPrerequisite@TechLevel7:
+		Name: Tech Level 7
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5, techlevel6, techlevel7
+	ProvidesTechPrerequisite@TechLevel8:
+		Name: Tech Level 8
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5, techlevel6, techlevel7, techlevel8
+	ProvidesTechPrerequisite@TechLevel9:
+		Name: Tech Level 9
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5, techlevel6, techlevel7, techlevel8, techlevel9
+	ProvidesTechPrerequisite@TechLevel10:
+		Name: Tech Level 10
+		Prerequisite: techlevel1, techlevel2, techlevel3, techlevel4, techlevel5, techlevel6, techlevel7, techlevel8, techlevel9, techlevel10
