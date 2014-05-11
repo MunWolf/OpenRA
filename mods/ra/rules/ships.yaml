@@ -3,7 +3,7 @@ SS:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 50
-		Prerequisites: spen
+		Prerequisites: spen, ~techlevel3
 		Owner: soviet
 		Hotkey: u
 	Valued:
@@ -56,7 +56,7 @@ MSUB:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 60
-		Prerequisites: spen,stek
+		Prerequisites: spen,stek, ~techlevel6
 		Owner: soviet
 		Hotkey: m
 	Valued:
@@ -109,7 +109,7 @@ DD:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 70
-		Prerequisites: syrd,dome
+		Prerequisites: syrd,dome, ~techlevel4
 		Owner: allies
 		Hotkey: r
 	Valued:
@@ -159,7 +159,7 @@ CA:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 100
-		Prerequisites: syrd,atek
+		Prerequisites: syrd,atek, ~techlevel7
 		Owner: allies
 		Hotkey: c
 	Valued:
@@ -221,6 +221,7 @@ LST:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 30
+		Prerequisites: ~techlevel2
 		Owner: allies,soviet
 		Hotkey: t
 	Valued:
@@ -254,7 +255,7 @@ PT:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 50
-		Prerequisites: syrd
+		Prerequisites: syrd, ~techlevel3
 		Owner: allies
 		Hotkey: b
 	Valued:

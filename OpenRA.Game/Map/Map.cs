@@ -30,6 +30,7 @@ namespace OpenRA
 		public bool? AllyBuildRadius;
 		public bool? FragileAlliances;
 		public int? StartingCash;
+		public string TechLevel;
 		public bool ConfigurableStartingUnits = true;
 		public string[] Difficulties = { };
 

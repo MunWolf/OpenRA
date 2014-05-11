@@ -188,6 +188,8 @@ namespace OpenRA.Traits
 
 	public interface ITraitInfo { object Create(ActorInitializer init); }
 
+	public interface ITechTreePrerequisiteInfo { string[] Prerequisites { get; } }
+
 	public class TraitInfo<T> : ITraitInfo where T : new() { public virtual object Create(ActorInitializer init) { return new T(); } }
 
 	public interface Requires<T> where T : class { }
