@@ -8,7 +8,7 @@ MSLO:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 130
-		Prerequisites: techcenter
+		Prerequisites: techcenter, ~techlevel10
 		Owner: soviet,allies
 		BuildLimit: 1
 		Hotkey: m
@@ -57,7 +57,7 @@ GAP:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 100
-		Prerequisites: atek
+		Prerequisites: atek, ~techlevel7
 		Owner: allies
 		Hotkey: g
 	Building:
@@ -96,7 +96,7 @@ SPEN:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 50
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel3
 		Owner: soviet
 		Hotkey: y
 	TargetableBuilding:
@@ -148,7 +148,7 @@ SYRD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 50
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel2
 		Owner: allies
 		Hotkey: y
 	Valued:
@@ -201,7 +201,7 @@ IRON:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 120
-		Prerequisites: stek
+		Prerequisites: stek, ~techlevel9
 		Owner: soviet
 		BuildLimit: 1
 		Hotkey: c
@@ -246,7 +246,7 @@ PDOX:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 120
-		Prerequisites: atek
+		Prerequisites: atek, ~techlevel9
 		Owner: allies
 		BuildLimit: 1
 		Hotkey: o
@@ -291,7 +291,7 @@ TSLA:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 70
-		Prerequisites: weap
+		Prerequisites: weap, ~techlevel4
 		Owner: soviet
 		Hotkey: u
 	Valued:
@@ -335,7 +335,7 @@ AGUN:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 50
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel3
 		Owner: allies
 		Hotkey: y
 	Valued:
@@ -382,7 +382,7 @@ DOME:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 80
-		Prerequisites: proc
+		Prerequisites: proc, ~techlevel2
 		Owner: allies,soviet
 		Hotkey: r
 	Valued:
@@ -422,7 +422,7 @@ PBOX:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 20
-		Prerequisites: tent
+		Prerequisites: tent, ~techlevel1
 		Owner: allies
 		Hotkey: p
 	-GivesBuildableArea:
@@ -502,9 +502,10 @@ HBOX:
 	Building:
 		Power: -15
 	Buildable:
+		
 		Queue: Defense
 		BuildPaletteOrder: 20
-		Prerequisites: tent
+		Prerequisites: tent, ~techlevel2
 		Owner: allies
 		Hotkey: l
 	-GivesBuildableArea:
@@ -585,7 +586,7 @@ GUN:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 40
-		Prerequisites: tent
+		Prerequisites: tent, ~techlevel2
 		Owner: allies
 		Hotkey: t
 	Valued:
@@ -626,7 +627,7 @@ FTUR:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 20
-		Prerequisites: barr
+		Prerequisites: barr, ~techlevel1
 		Owner: soviet
 		Hotkey: t
 	Valued:
@@ -665,7 +666,7 @@ SAM:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 90
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel6
 		Owner: soviet
 		Hotkey: y
 	Valued:
@@ -711,7 +712,7 @@ ATEK:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 100
-		Prerequisites: weap,dome
+		Prerequisites: weap,dome, ~techlevel7
 		Owner: allies
 		Hotkey: t
 	Valued:
@@ -751,7 +752,7 @@ WEAP:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 70
-		Prerequisites: proc
+		Prerequisites: proc, ~techlevel2
 		Owner: soviet,allies
 		Hotkey: w
 	Valued:
@@ -790,6 +791,7 @@ FACT:
 		Dimensions: 3,3
 	Buildable:
 		Queue: Building
+		Prerequisites: ~techlevel-1
 		BuildPaletteOrder: 1000
 		Owner: None
 	Health:
@@ -828,7 +830,7 @@ PROC:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 10
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel1
 		Owner: allies,soviet
 		Hotkey: e
 	Valued:
@@ -873,7 +875,7 @@ SILO:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 60
-		Prerequisites: proc
+		Prerequisites: proc, ~techlevel1
 		Owner: allies,soviet
 		Hotkey: o
 	Valued:
@@ -905,7 +907,7 @@ HPAD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 90
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel6
 		Owner: allies
 		Hotkey: i
 	Valued:
@@ -941,7 +943,7 @@ AFLD:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 90
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel5
 		Owner: soviet
 		Hotkey: i
 	Valued:
@@ -992,8 +994,8 @@ POWR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 0
+		Prerequisites: ~techlevel1
 		Owner: allies,soviet
-		Prerequisite:~techlevel1
 		Hotkey: p
 	Valued:
 		Cost: 300
@@ -1001,7 +1003,7 @@ POWR:
 		Name: Power Plant
 		Description: Provides power for other structures.
 	ProvidesCustomPrerequisite:
-		Prerequisite: anypower
+		Prerequisites: anypower
 	Building:
 		Power: 100
 		Footprint: xx xx
@@ -1021,7 +1023,7 @@ APWR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 20
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel5
 		Owner: allies,soviet
 		Hotkey: l
 	Valued:
@@ -1050,7 +1052,7 @@ STEK:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 100
-		Prerequisites: weap,dome
+		Prerequisites: weap,dome, ~techlevel4
 		Owner: soviet
 		Hotkey: t
 	Valued:
@@ -1078,7 +1080,7 @@ BARR:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 30
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel1
 		Owner: soviet
 		Hotkey: b
 	Valued:
@@ -1115,7 +1117,7 @@ TENT:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 30
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel1
 		Owner: allies
 		Hotkey: b
 	Valued:
@@ -1169,7 +1171,7 @@ FIX:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 40
-		Prerequisites: weap
+		Prerequisites: weap, ~techlevel2
 		Owner: allies,soviet
 		Hotkey: m
 	Valued:
@@ -1202,6 +1204,7 @@ FACF:
 	Buildable:
 		BuildPaletteOrder: 900
 		Owner: None
+		Prerequisites: ~techlevel1
 		Hotkey: c
 		Queue: Defense
 	Tooltip:
@@ -1230,7 +1233,7 @@ WEAF:
 		Cost: 50
 	Buildable:
 		BuildPaletteOrder: 900
-		Prerequisites: proc
+		Prerequisites: proc, ~techlevel3
 		Owner: None
 		Hotkey: x
 		Queue: Defense
@@ -1261,7 +1264,7 @@ SYRF:
 		Cost: 50
 	Buildable:
 		BuildPaletteOrder: 900
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel3
 		Owner: None
 		Hotkey: z
 		Queue: Defense
@@ -1295,7 +1298,7 @@ SPEF:
 		TargetTypes: Ground, Water
 	Buildable:
 		BuildPaletteOrder: 900
-		Prerequisites: anypower
+		Prerequisites: anypower, ~techlevel3
 		Owner: None
 		Hotkey: z
 		Queue: Defense
@@ -1328,6 +1331,7 @@ DOMF:
 		Name: Fake Radar Dome
 		Description: Looks like a Radar Dome.
 	Buildable:
+		, ~techlevel3
 		BuildPaletteOrder: 900
 		Prerequisites: proc
 		Owner: None
@@ -1353,7 +1357,7 @@ SBAG:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 1000
-		Prerequisites: fact
+		Prerequisites: fact, ~techlevel2
 		Owner: allies
 		Hotkey: b
 	Valued:
@@ -1378,7 +1382,7 @@ FENC:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 1000
-		Prerequisites: fact
+		Prerequisites: fact, ~techlevel1
 		Owner: soviet
 		Hotkey: n
 	Valued:
@@ -1403,7 +1407,7 @@ BRIK:
 	Buildable:
 		Queue: Defense
 		BuildPaletteOrder: 1000
-		Prerequisites: fact
+		Prerequisites: fact, ~techlevel5
 		Owner: allies,soviet
 		Hotkey: w
 	Valued:

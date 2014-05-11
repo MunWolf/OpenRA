@@ -3,7 +3,7 @@ DOG:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 30
-		Prerequisites: barr
+		Prerequisites: barr, ~techlevel2
 		Owner: soviet
 		Hotkey: o
 	Valued:
@@ -34,6 +34,7 @@ E1:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 10
+		Prerequisites: ~techlevel1
 		Owner: allies,soviet
 		Hotkey: i
 	Valued:
@@ -66,7 +67,7 @@ E2:
 		Queue: Infantry
 		BuildPaletteOrder: 10
 		Owner: soviet
-		Prerequisites: barr
+		Prerequisites: barr, ~techlevel1
 		Hotkey: g
 	Valued:
 		Cost: 160
@@ -102,6 +103,7 @@ E3:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 20
+		Prerequisites: ~techlevel1
 		Owner: allies,soviet
 		Hotkey: r
 	Valued:
@@ -136,7 +138,7 @@ E4:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 60
-		Prerequisites: ftur
+		Prerequisites: ftur, ~techlevel4
 		Owner: soviet
 		Hotkey: t
 	Valued:
@@ -169,6 +171,7 @@ E6:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 50
+		Prerequisites: ~techlevel3
 		Owner: soviet,allies
 		Hotkey: e
 	Valued:
@@ -201,7 +204,7 @@ SPY:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 60
-		Prerequisites: dome, tent
+		Prerequisites: dome, tent, ~techlevel4
 		Owner: allies
 		Hotkey: p
 	Valued:
@@ -238,7 +241,7 @@ E7:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 110
-		Prerequisites: techcenter
+		Prerequisites: techcenter, ~techlevel8
 		Owner: allies
 		Hotkey: y
 		BuildLimit: 1
@@ -280,7 +283,7 @@ MEDI:
 		Queue: Infantry
 		BuildPaletteOrder: 20
 		Owner: allies
-		Prerequisites: tent
+		Prerequisites: tent, ~techlevel1
 		Hotkey: m
 	Valued:
 		Cost: 200
@@ -316,7 +319,7 @@ MECH:
 		Queue: Infantry
 		BuildPaletteOrder: 70
 		Owner: allies
-		Prerequisites: fix
+		Prerequisites: fix, ~techlevel4
 		Hotkey: c
 	Valued:
 		Cost: 500
@@ -433,7 +436,7 @@ HIJACKER:
 		Queue: Infantry
 		BuildPaletteOrder: 90
 		Owner: soviet
-		Prerequisites: fix
+		Prerequisites: fix, ~techlevel4
 		Hotkey: j
 	Valued:
 		Cost: 500
@@ -460,7 +463,7 @@ SHOK:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 70
-		Prerequisites: stek,tsla
+		Prerequisites: stek,tsla, ~techlevel4
 		Owner: soviet
 		Hotkey: l
 	Valued:
@@ -501,7 +504,7 @@ SNIPER:
 		Queue: Infantry
 		BuildPaletteOrder: 80
 		Owner: soviet
-		Prerequisites: dome
+		Prerequisites: dome, ~techlevel3
 		Hotkey: h
 	Selectable:
 		Bounds: 12,17,0,-6
@@ -551,7 +554,7 @@ Zombie:
 		Queue: Infantry
 		BuildPaletteOrder: 200
 		Owner: Umbrella
-		Prerequisites: bio
+		Prerequisites: bio, ~techlevel0
 	Selectable:
 		Voice: AntVoice
 		Bounds: 12,17,0,-9
@@ -575,7 +578,7 @@ Ant:
 	Buildable:
 		Queue: Infantry
 		BuildPaletteOrder: 1954
-		Owner: Them
+		Owner: Them, ~techlevel0
 		Prerequisites: bio
 	Selectable:
 		Voice: AntVoice
