@@ -110,12 +110,12 @@ namespace OpenRA.Mods.RA
 
 			bool HasPrerequisites(Cache<string, List<Actor>> buildables)
 			{
-				return prerequisites.All(p => !(p.Contains("!") ^ !buildables.Keys.Contains(p.Replace("!", "").Replace("~", ""))));
+				return prerequisites.All(p => !(p.Replace("~", "").StartsWith("!") ^ !buildables.Keys.Contains(p.Replace("!", "").Replace("~", ""))));
 			}
 
 			bool isHidden(Cache<string, List<Actor>> buildables)
 			{
-				return prerequisites.Any(p => (p.Contains("!") && p.Contains("~")) ^ (p.Contains("~") && !buildables.Keys.Contains(p.Replace("~", "").Replace("!", ""))));
+				return prerequisites.Any(p => (p.Replace("~", "").StartsWith("!") && p.StartsWith("~")) ^ (p.StartsWith("~") && !buildables.Keys.Contains(p.Replace("~", "").Replace("!", ""))));
 			}
 
 			public void Update(Cache<string, List<Actor>> buildables)
