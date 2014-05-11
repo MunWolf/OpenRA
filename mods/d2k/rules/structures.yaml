@@ -72,7 +72,7 @@ CONCRETEB:
 	BaseBuilding:
 	ProductionBar:
 	ProvidesCustomPrerequisite:
-		Prerequisite: Conyard
+		Prerequisites: Conyard
 	WithBuildingPlacedOverlay:
 
 ^POWER:
@@ -101,7 +101,7 @@ CONCRETEB:
 	RevealsShroud:
 		Range: 4c0
 	ProvidesCustomPrerequisite:
-		Prerequisite: Power
+		Prerequisites: Power
 	WithIdleOverlay@ZAPS:
 		Sequence: idle-zaps
 
@@ -145,7 +145,7 @@ CONCRETEB:
 	RepairsUnits:
 		ValuePercentage: 0
 	ProvidesCustomPrerequisite:
-		Prerequisite: Barracks
+		Prerequisites: Barracks
 
 ^REFINERY:
 	Inherits: ^Building
@@ -189,7 +189,7 @@ CONCRETEB:
 		SpawnOffset: 2,1
 		Facing: 160
 	ProvidesCustomPrerequisite:
-		Prerequisite: Refinery
+		Prerequisites: Refinery
 
 ^SILO:
 	Inherits: ^Building
@@ -259,7 +259,7 @@ CONCRETEB:
 	PrimaryBuilding:
 	ProductionBar:
 	ProvidesCustomPrerequisite:
-		Prerequisite: Light
+		Prerequisites: Light
 	WithProductionOverlay@WELDING:
 		Sequence: production-welding
 
@@ -299,7 +299,7 @@ CONCRETEB:
 	PrimaryBuilding:
 	ProductionBar:
 	ProvidesCustomPrerequisite:
-		Prerequisite: Heavy
+		Prerequisites: Heavy
 	WithProductionOverlay@WELDING:
 		Sequence: production-welding
 
@@ -336,7 +336,7 @@ CONCRETEB:
 		Range: 6
 	RenderDetectionCircle:
 	ProvidesCustomPrerequisite:
-		Prerequisite: Outpost
+		Prerequisites: Outpost
 	WithIdleOverlay@DISH:
 		Sequence: idle-dish
 		PauseOnLowPower: yes
@@ -383,7 +383,7 @@ CONCRETEB:
 	CanPowerDown:
 	DisabledOverlay:
 	ProvidesCustomPrerequisite:
-		Prerequisite: Starport
+		Prerequisites: Starport
 
 ^WALL:
 	Buildable:
@@ -574,7 +574,7 @@ WALL:
 	RallyPoint:
 		RallyPoint: 1,3
 	ProvidesCustomPrerequisite:
-		Prerequisite: Repair
+		Prerequisites: Repair
 
 ^HIGHTECH:
 	Inherits: ^Building
@@ -602,7 +602,7 @@ WALL:
 	RevealsShroud:
 		Range: 4c0
 	ProvidesCustomPrerequisite:
-		Prerequisite: Hitech
+		Prerequisites: Hitech
 #	WithProductionOverlay@WELDING:
 #		Sequence: production-welding
 
@@ -643,7 +643,7 @@ WALL:
 	RevealsShroud:
 		Range: 4c0
 	ProvidesCustomPrerequisite:
-		Prerequisite: Research
+		Prerequisites: Research
 	WithIdleOverlay@LIGHTS:
 		Sequence: idle-lights
 
@@ -676,7 +676,7 @@ WALL:
 	DetectCloaked:
 		Range: 4
 	ProvidesCustomPrerequisite:
-		Prerequisite: Palace
+		Prerequisites: Palace
 
 SIETCH:
 	Inherits: ^Building

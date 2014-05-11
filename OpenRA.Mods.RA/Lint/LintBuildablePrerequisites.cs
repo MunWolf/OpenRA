@@ -20,8 +20,8 @@ namespace OpenRA.Mods.RA
 		{
 			var providedPrereqs = Rules.Info.Keys.Concat(
 				Rules.Info.SelectMany(a => a.Value.Traits
-					.WithInterface<ProvidesCustomPrerequisiteInfo>()
-					.Select(p => p.Prerequisite))).ToArray();
+					.WithInterface<ITechTreePrerequisite>()
+					.SelectMany(p => p.ProvidesPrerequisites))).ToArray();
 
 			// TODO: this check is case insensitive while the real check in-game is not
 			foreach (var i in Rules.Info)
@@ -29,7 +29,7 @@ namespace OpenRA.Mods.RA
 				var bi = i.Value.Traits.GetOrDefault<BuildableInfo>();
 				if (bi != null)
 					foreach (var prereq in bi.Prerequisites)
-						if (!providedPrereqs.Contains(prereq.Replace("!", "")))
+						if (!providedPrereqs.Contains(prereq.Replace("!", "").Replace("~", "")))
 							emitError("Buildable actor {0} has prereq {1} not provided by anything.".F(i.Key, prereq));
 			}
 		}

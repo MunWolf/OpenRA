@@ -720,7 +720,7 @@ ATEK:
 		Name: Allied Tech Center
 		Description: Provides Allied advanced technologies.\n  Special Ability: GPS Satellite
 	ProvidesCustomPrerequisite:
-		Prerequisite: techcenter
+		Prerequisites: techcenter
 	Building:
 		Power: -200
 		Footprint: xx xx
@@ -993,6 +993,7 @@ POWR:
 		Queue: Building
 		BuildPaletteOrder: 0
 		Owner: allies,soviet
+		Prerequisite:~techlevel1
 		Hotkey: p
 	Valued:
 		Cost: 300
@@ -1029,7 +1030,7 @@ APWR:
 		Name: Advanced Power Plant
 		Description: Provides double the power of a\nstandard Power Plant.
 	ProvidesCustomPrerequisite:
-		Prerequisite: anypower
+		Prerequisites: anypower
 	Building:
 		Power: 200
 		Footprint: ___ xxx xxx
@@ -1058,7 +1059,7 @@ STEK:
 		Name: Soviet Tech Center
 		Description: Provides Soviet advanced technologies.
 	ProvidesCustomPrerequisite:
-		Prerequisite: techcenter
+		Prerequisites: techcenter
 	Building:
 		Power: -100
 		Footprint: xxx xxx

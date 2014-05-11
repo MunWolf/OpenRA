@@ -58,7 +58,7 @@ NUKE:
 		Name: Power Plant
 		Description: Generates power
 	ProvidesCustomPrerequisite:
-		Prerequisite: anypower
+		Prerequisites: anypower
 	Buildable:
 		BuildPaletteOrder: 10
 		Owner: gdi,nod
@@ -81,7 +81,7 @@ NUK2:
 		Name: Advanced Power Plant
 		Description: Provides more power, cheaper than the \nstandard Power Plant
 	ProvidesCustomPrerequisite:
-		Prerequisite: anypower
+		Prerequisites: anypower
 	Buildable:
 		BuildPaletteOrder: 30
 		Prerequisites: anyhq
@@ -175,7 +175,7 @@ PYLE:
 		Name: Barracks
 		Description: Trains infantry
 	ProvidesCustomPrerequisite:
-		Prerequisite: barracks
+		Prerequisites: barracks
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anypower
@@ -213,7 +213,7 @@ HAND:
 		Name: Hand of Nod
 		Description: Trains infantry
 	ProvidesCustomPrerequisite:
-		Prerequisite: barracks
+		Prerequisites: barracks
 	Buildable:
 		BuildPaletteOrder: 40
 		Prerequisites: anypower
@@ -248,7 +248,7 @@ AFLD:
 		Name: Airstrip
 		Description: Provides a dropzone\nfor vehicle reinforcements
 	ProvidesCustomPrerequisite:
-		Prerequisite: vehicleproduction
+		Prerequisites: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc
@@ -285,7 +285,7 @@ WEAP:
 		Name: Weapons Factory
 		Description: Assembly point for\nvehicle reinforcements
 	ProvidesCustomPrerequisite:
-		Prerequisite: vehicleproduction
+		Prerequisites: vehicleproduction
 	Buildable:
 		BuildPaletteOrder: 50
 		Prerequisites: proc
@@ -356,7 +356,7 @@ HQ:
 		Name: Communications Center
 		Description: Provides an overview of the battlefield.\n  Requires power to operate.
 	ProvidesCustomPrerequisite:
-		Prerequisite: anyhq
+		Prerequisites: anyhq
 	Buildable:
 		BuildPaletteOrder: 70
 		Prerequisites: proc
@@ -431,7 +431,7 @@ EYE:
 		Name: Advanced Communications Center
 		Description: Provides access to the Ion Cannon.\n  Requires power to operate.
 	ProvidesCustomPrerequisite:
-		Prerequisite: anyhq
+		Prerequisites: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq
@@ -476,7 +476,7 @@ TMPL:
 		Name: Temple of Nod
 		Description: Place of worship and secret missile silo.\n  Requires power to operate.
 	ProvidesCustomPrerequisite:
-		Prerequisite: anyhq
+		Prerequisites: anyhq
 	Buildable:
 		BuildPaletteOrder: 100
 		Prerequisites: anyhq
