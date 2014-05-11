@@ -91,11 +91,12 @@ namespace OpenRA.Mods.RA
 		{
 			public readonly string Key;
 
-			// strings may be either actor type, or "alternate name" key
+			// Strings may be either actor type, or "alternate name" key
 			readonly string[] prerequisites;
 			readonly ITechTreeElement watcher;
 			bool hasPrerequisites;
 			int buildLimit;
+			bool hidden;
 
 			public Watcher(string key, BuildableInfo info, ITechTreeElement watcher)
 			{
@@ -104,17 +105,29 @@ namespace OpenRA.Mods.RA
 				this.watcher = watcher;
 				this.hasPrerequisites = false;
 				this.buildLimit = info.BuildLimit;
+				this.hidden = info.Hidden;
 			}
 
 			bool HasPrerequisites(Cache<string, List<Actor>> buildables)
 			{
-				return prerequisites.All(p => !(p.StartsWith("!") ^ !buildables.Keys.Contains(p.Replace("!", ""))));
+				return prerequisites.All(p => !(p.Contains("!") ^ !buildables.Keys.Contains(p.Replace("!", "").Replace("~", ""))));
+			}
+
+			bool isHidden(Cache<string, List<Actor>> buildables)
+			{
+				return prerequisites.Any(p => (p.Contains("!") && p.Contains("~")) ^ (p.Contains("~") && !buildables.Keys.Contains(p.Replace("~", "").Replace("!", ""))));
 			}
 
 			public void Update(Cache<string, List<Actor>> buildables)
 			{
 				var hasReachedBuildLimit = buildLimit > 0 && buildables[Key].Count >= buildLimit;
+				// Checks for prerequsites, the ! annotation in those prereqs is a not operator aka if the player does not have an ore refinery the condition is met
 				var nowHasPrerequisites = HasPrerequisites(buildables) && !hasReachedBuildLimit;
+				var nowHidden = isHidden(buildables);
+
+				// Checks if the prereq has the ~ annotation and if those prereqs are availible, if not it hides the item from the buildqueue
+				if (nowHidden != hidden)
+					watcher.PrerequisitesHidden(Key, hidden);
 
 				if (nowHasPrerequisites && !hasPrerequisites)
 					watcher.PrerequisitesAvailable(Key);
@@ -122,23 +135,43 @@ namespace OpenRA.Mods.RA
 				if (!nowHasPrerequisites && hasPrerequisites)
 					watcher.PrerequisitesUnavailable(Key);
 
+				hidden = nowHidden;
 				hasPrerequisites = nowHasPrerequisites;
 			}
 		}
 	}
 
-	public class ProvidesCustomPrerequisiteInfo : ITraitInfo
+	public class ProvidesCustomPrerequisiteInfo : ITraitInfo, ITechTreePrerequisiteInfo
 	{
-		public readonly string Prerequisite;
+		public readonly string[] Prerequisite;
 
 		public object Create(ActorInitializer init) { return new ProvidesCustomPrerequisite(this); }
+
+		public string[] Prerequisites
+		{
+			get { return Prerequisite; }
+		}
 	}
 
 	public class ProvidesCustomPrerequisite : ITechTreePrerequisite
 	{
 		ProvidesCustomPrerequisiteInfo info;
 
-		public IEnumerable<string> ProvidesPrerequisites { get { yield return info.Prerequisite; } }
+		public IEnumerable<string> ProvidesPrerequisites
+		{
+			get
+			{
+				if (info.Prerequisite == null)
+					yield return null;
+				else
+				{
+					foreach (var Prerequisite in info.Prerequisite)
+					{
+						yield return Prerequisite;
+					}
+				}
+			}
+		}
 
 		public ProvidesCustomPrerequisite(ProvidesCustomPrerequisiteInfo info)
 		{

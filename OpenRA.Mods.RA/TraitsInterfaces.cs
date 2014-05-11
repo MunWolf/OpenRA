@@ -32,6 +32,7 @@ namespace OpenRA.Mods.RA
 	{
 		void PrerequisitesAvailable(string key);
 		void PrerequisitesUnavailable(string key);
+		void PrerequisitesHidden(string key, bool hidden);
 	}
 
 	public interface ITechTreePrerequisite

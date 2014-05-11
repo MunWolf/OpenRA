@@ -540,6 +540,25 @@ namespace OpenRA.Mods.RA.Server
 						server.SyncLobbyInfo();
 						return true;
 					}},
+				{ "techlevel",
+					s =>
+					{
+						if (!client.IsAdmin)
+						{
+							server.SendOrderTo(conn, "Message", "Only the host can set that option");
+							return true;
+						}
+
+						if (server.Map.Options.StartingCash.HasValue)
+						{
+							server.SendOrderTo(conn, "Message", "Map has disabled Tech configuration");
+							return true;
+						}
+
+						server.LobbyInfo.GlobalSettings.TechLevel = s;
+						server.SyncLobbyInfo();
+						return true;
+					}},
 				{ "kick",
 					s =>
 					{
