@@ -1,0 +1,175 @@
+Selectable: True
+
+MapFormat: 6
+
+RequiresMod: ra
+
+Title: Homely War
+
+Description: Fight the fight of the ages.
+
+Author: Richard (WolfGaming)
+
+Tileset: DESERT
+
+MapSize: 64,64
+
+Bounds: 8,8,48,48
+
+UseAsShellmap: False
+
+Type: Custom
+
+Options:
+	Crates: False
+	Fog: False
+	Shroud: False
+	AllyBuildRadius: False
+	FragileAlliances: False
+	StartingCash: 2500
+	ConfigurableStartingUnits: False
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Race: allies
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Race: allies
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		AllowBots: False
+		LockRace: True
+		Race: allies
+		LockSpawn: True
+		Enemies: Multi1
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		AllowBots: False
+		LockRace: True
+		Race: allies
+		LockSpawn: True
+		Enemies: Multi0
+
+Actors:
+	Actor1: mpspawn
+		Location: 44,44
+		Owner: Neutral
+	Actor2: mpspawn
+		Location: 40,22
+		Owner: Neutral
+	Actor3: tent
+		Location: 44,44
+		Owner: Multi0
+	Actor4: proc
+		Location: 44,39
+		Owner: Multi0
+	Actor6: powr
+		Location: 38,44
+		Owner: Multi0
+	Actor7: hq
+		Location: 36,40
+		Owner: Multi0
+	Actor8: tent
+		Location: 39,21
+		Owner: Multi0
+	Actor9: proc
+		Location: 36,17
+		Owner: Multi0
+	Actor10: powr
+		Location: 33,21
+		Owner: Multi0
+	Actor11: hq
+		Location: 36,25
+		Owner: Multi0
+		
+
+Smudges:
+
+Rules:
+	World:
+		-SpawnMPUnits:
+		-MPStartLocations:
+	Player:
+		ClassicProductionQueue@UpgradeMap:
+			Type: UpgradeMap
+			BuildSpeed: .4
+			LowPowerSlowdown: 3
+			QueuedAudio: Building
+			ReadyAudio: ConstructionComplete
+			SpeedUp: False
+			RequireOwner: false
+	HQ:
+		Inherits: ^Building
+		Tooltip:
+			Name: Headquarters
+			Description: Allows you to research upgrades.\nYou lose if this building is destroyed.
+		Building:
+			Power: -40
+			Footprint: xx xx
+			Dimensions: 2,2
+		DisabledOverlay:
+		Health:
+			HP: 1000
+		Armor:
+			Type: Wood
+		RevealsShroud:
+			Range: 10c0
+		Bib:
+		RenderBuilding:
+			Image: DOME
+		ParatroopersPower:
+			Icon: paratroopers
+			ChargeTime: 360
+			Description: Paratroopers
+			Prerequisites: support.droppower
+			LongDesc: A Badger drops a squad of infantry\nanywhere on the map.
+			DropItems: E1,E1,E1,E3,E3
+			SelectTargetSound: slcttgt1.aud
+			AllowImpassableCells: false
+			QuantizedFacings: 8
+			CameraActor: camera.paradrop
+			DisplayBeacon: true
+			BeaconPoster: pinficon
+		Production:
+			Produces: Defense
+			MoveIntoWorld: False
+		Exit:
+	
+	SUP:
+		Valued:
+			Cost: 2500
+		Tooltip:
+			Name: Paratrooper Power
+			Description: Allows you to use the paratrooper power from HQ.
+		Buildable:
+			Queue: Defense
+			BuildPaletteOrder: 140
+			Prerequisites: hq
+			BuildLimit: 1
+			Hotkey: m
+		ProvidesCustomPrerequisite@support:
+			Prerequisite: support.droppower
+		RenderSprites:
+			Image: paricon
+		
+		
+
+Sequences:
+	paricon:
+		icon: pinficon
+	
+VoxelSequences:
+
+Weapons:
+
+Voices:
+
+Notifications:
+
+Translations:
