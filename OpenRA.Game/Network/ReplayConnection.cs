@@ -32,6 +32,7 @@ namespace OpenRA.Network
 		public bool ResumeAtEnd { get; private set; }
 		bool useInner = false;
 		OrderManager orderManager;
+		float ticksUntilResume = 0;
 
 		public int LocalClientId { get { return inner == null ? 0 : inner.LocalClientId; } }
 		public ConnectionState ConnectionState { get { return !useInner ? ConnectionState.Connected : inner.ConnectionState; } }
@@ -42,7 +43,9 @@ namespace OpenRA.Network
 		public ReplayConnection(string replayFilename)
 			: this(replayFilename, null, null) { }
 
-		public ReplayConnection(string replayFilename, OrderManager om, IConnection inner)
+		public ReplayConnection(string replayFilename, OrderManager om, IConnection inner) : this(replayFilename, om, inner, 0) { }
+
+		public ReplayConnection(string replayFilename, OrderManager om, IConnection inner, int secUntilResume)
 		{
 			this.ResumeAtEnd = om != null;
 			this.inner = inner;
@@ -52,6 +55,9 @@ namespace OpenRA.Network
 				orderManager = om;
 				Game.IsSimulating = true;
 			}
+
+			//Convert from Seconds to Ticks ???
+			ticksUntilResume = secUntilResume * 25f;
 
 			// Parse replay data into a struct that can be fed to the game in chunks
 			// to avoid issues with all immediate orders being resolved on the first tick.
@@ -85,7 +91,7 @@ namespace OpenRA.Network
 								LobbyInfo = Session.Deserialize(o.TargetString);
 						}
 					}
-					else
+					else if (ticksUntilResume <= 0 || TickCount < ticksUntilResume)
 					{
 						// Regular order - finalize the chunk
 						chunk.Frame = frame;
