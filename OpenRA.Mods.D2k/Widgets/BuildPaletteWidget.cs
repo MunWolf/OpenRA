@@ -264,11 +264,11 @@ namespace OpenRA.Mods.D2k.Widgets
 						clock.Tick();
 						WidgetUtils.DrawSHPCentered(clock.Image, drawPos + iconOffset, worldRenderer);
 
-						if (queue.CurrentItem() == firstOfThis)
+						if (firstOfThis.Started)
 							textBits.Add(Pair.New(overlayPos, GetOverlayForItem(firstOfThis)));
 
 						var repeats = queue.AllQueued().Count(a => a.Item == item.Name);
-						if (repeats > 1 || queue.CurrentItem() != firstOfThis)
+						if (repeats > 1 || !firstOfThis.Started)
 							textBits.Add(Pair.New(overlayPos + new float2(-24, -14), repeats.ToString()));
 					}
 					else
