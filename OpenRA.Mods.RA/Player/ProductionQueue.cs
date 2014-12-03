@@ -387,6 +387,11 @@ namespace OpenRA.Mods.RA
 
 			return false;
 		}
+
+		public virtual bool NeedsFinalization()
+		{
+			return false;
+		}
 	}
 
 	public class ProductionState
