@@ -291,7 +291,7 @@ namespace OpenRA.Mods.RA.Widgets
 				if (total > 0)
 				{
 					var first = icon.Queued[0];
-					var waiting = first != CurrentQueue.CurrentItem() && !first.Done;
+					var waiting = !first.Started && !first.Done;
 					if (first.Done)
 					{
 						if (ReadyTextStyle == ReadyTextStyleOptions.Solid || orderManager.LocalFrameNumber / 9 % 2 == 0)
