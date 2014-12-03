@@ -137,6 +137,20 @@ namespace OpenRA.Mods.RA.Widgets.Logic
 					}
 				}
 			};
+
+			var purchaseButton = widget.GetOrNull<ButtonWidget>("PURCHASE_BUTTON");
+			if (purchaseButton != null)
+			{
+				purchaseButton.IsVisible  = () =>
+				{
+					return !(palette.CurrentQueue == null || palette.CurrentQueue.NeedsFinalization());
+				};
+				purchaseButton.OnClick = () =>
+				{
+					if (palette.CurrentQueue != null)
+						world.IssueOrder(new Order("FinalizeProduction", palette.CurrentQueue.Actor, false));
+				};
+			}
 		}
 	}
 }
