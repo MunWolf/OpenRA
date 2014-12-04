@@ -202,6 +202,7 @@ namespace OpenRA.Mods.D2k.Widgets
 
 			DrawPalette(CurrentQueue);
 			DrawBuildTabs(world);
+			DrawPurchaseButton(world);
 		}
 
 		int numActualRows = 5;
@@ -437,6 +438,43 @@ namespace OpenRA.Mods.D2k.Widgets
 			const int tabWidth = 24;
 			const int tabHeight = 40;
 			var x = paletteOrigin.X - tabWidth;
+			var y = paletteOrigin.Y + 9;
+
+			tabs.Clear();
+
+			foreach (var queue in VisibleQueues)
+			{
+				string[] tabKeys = { "normal", "ready", "selected" };
+				var producing = queue.CurrentItem();
+				var index = queue == CurrentQueue ? 2 : (producing != null && producing.Done) ? 1 : 0;
+
+				var race = world.LocalPlayer.Country.Race;
+				WidgetUtils.DrawRGBA(ChromeProvider.GetImage("tabs-" + tabKeys[index], race + "-" + queue.Info.Type), new float2(x, y));
+
+				var rect = new Rectangle((int)x, (int)y, tabWidth, tabHeight);
+				tabs.Add(Pair.New(rect, HandleTabClick(queue, world)));
+
+				if (rect.Contains(Viewport.LastMousePos))
+				{
+					var text = queue.Info.Type;
+					var font = Game.Renderer.Fonts["Bold"];
+					var sz = font.Measure(text);
+					WidgetUtils.DrawPanelPartial("dialog4",
+						Rectangle.FromLTRB(rect.Left - sz.X - 30, rect.Top, rect.Left - 5, rect.Bottom),
+						PanelSides.All);
+
+					font.DrawText(text, new float2(rect.Left - sz.X - 20, rect.Top + 12), Color.White);
+				}
+
+				y += tabHeight;
+			}
+		}
+
+		void DrawPurchaseButton(World world)
+		{
+			const int tabWidth = 84;
+			const int tabHeight = 40;
+			var x = paletteOrigin.X;
 			var y = paletteOrigin.Y + 9;
 
 			tabs.Clear();
