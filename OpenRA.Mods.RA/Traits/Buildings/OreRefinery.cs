@@ -24,6 +24,9 @@ namespace OpenRA.Mods.RA.Traits
 		[Desc("Docking cell relative to top-left cell.")]
 		public readonly CVec DockOffset = new CVec(1, 2);
 
+		[Desc("When true dump ore as cash. (Cash needs no storage)")]
+		public readonly bool DepositAsCash = false;
+
 		public readonly bool ShowTicks = true;
 		public readonly int TickLifetime = 30;
 		public readonly int TickVelocity = 2;
@@ -66,11 +69,14 @@ namespace OpenRA.Mods.RA.Traits
 				.Where(a => a.Trait.LinkedProc == self);
 		}
 
-		public bool CanGiveOre(int amount) { return PlayerResources.CanGiveResources(amount); }
+		public bool CanGiveOre(int amount) { return Info.DepositAsCash || PlayerResources.CanGiveResources(amount); }
 
 		public void GiveOre(int amount)
 		{
-			PlayerResources.GiveResources(amount);
+			if (Info.DepositAsCash)
+				PlayerResources.GiveCash(amount);
+			else
+				PlayerResources.GiveResources(amount);
 			if (Info.ShowTicks)
 				currentDisplayValue += amount;
 		}
