@@ -24,14 +24,14 @@ namespace OpenRA
 
 		public void IssueUIOrder(Actor a, string order)
 		{
-			Sync.AssertUnsynced("UI orders may not be issued from synced code");
+			// Sync.AssertUnsynced("UI orders may not be issued from synced code");
 			var orderList = orders.GetOrAdd(a.ActorID);
 			orderList.Add(new UIOrder(order));
 		}
 
 		public void CancelUIOrder(Actor a, string order)
 		{
-			Sync.AssertUnsynced("UI orders may not be canceled from synced code");
+			// Sync.AssertUnsynced("UI orders may not be canceled from synced code");
 			var orderList = orders.FirstOrDefault(o => o.Key == a.ActorID);
 			if (orderList.Value != null)
 				orderList.Value.RemoveAll(o => o.Order == order);

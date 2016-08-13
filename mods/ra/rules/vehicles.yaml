@@ -308,6 +308,7 @@ MCV:
 		Crushes: wall, mine, crate, infantry
 	RevealsShroud:
 		Range: 4c0
+	-AttackMove:
 	Transforms:
 		IntoActor: fact
 		Offset: -1,-1
