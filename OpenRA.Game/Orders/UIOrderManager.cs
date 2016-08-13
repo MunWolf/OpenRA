@@ -26,7 +26,8 @@ namespace OpenRA
 		{
 			// Sync.AssertUnsynced("UI orders may not be issued from synced code");
 			var orderList = orders.GetOrAdd(a.ActorID);
-			orderList.Add(new UIOrder(order));
+			if (!orderList.Any(o => o.Order == order))
+				orderList.Add(new UIOrder(order));
 		}
 
 		public void CancelUIOrder(Actor a, string order)
