@@ -120,7 +120,7 @@ namespace OpenRA.Mods.Common.Traits
 
 	class ExternalCaptureOrderTargeter : UnitOrderTargeter
 	{
-		public ExternalCaptureOrderTargeter() : base("ExternalCaptureActor", 6, "enter", true, true) { }
+		public ExternalCaptureOrderTargeter() : base("ExternalCaptureActor", 6, "enter", true, true, false) { }
 
 		public override bool CanTargetActor(Actor self, Actor target, TargetModifiers modifiers, ref string cursor)
 		{
@@ -140,6 +140,11 @@ namespace OpenRA.Mods.Common.Traits
 			var capturesInfo = self.Trait<ExternalCaptures>().Info;
 			cursor = canTargetActor ? capturesInfo.CaptureCursor : capturesInfo.CaptureBlockedCursor;
 			return canTargetActor;
+		}
+
+		public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+		{
+			return false;
 		}
 	}
 }

@@ -21,7 +21,7 @@ namespace OpenRA.Mods.Common.Orders
 
 		public EnterAlliedActorTargeter(string order, int priority,
 			Func<Actor, bool> canTarget, Func<Actor, bool> useEnterCursor)
-			: base(order, priority, "enter", false, true)
+			: base(order, priority, "enter", false, true, false)
 		{
 			this.canTarget = canTarget;
 			this.useEnterCursor = useEnterCursor;
@@ -39,6 +39,11 @@ namespace OpenRA.Mods.Common.Orders
 		public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
 		{
 			// Allied actors are never frozen
+			return false;
+		}
+
+		public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+		{
 			return false;
 		}
 	}

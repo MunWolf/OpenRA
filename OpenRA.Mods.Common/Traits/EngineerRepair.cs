@@ -104,7 +104,7 @@ namespace OpenRA.Mods.Common.Traits
 		class EngineerRepairOrderTargeter : UnitOrderTargeter
 		{
 			public EngineerRepairOrderTargeter()
-				: base("EngineerRepair", 6, "goldwrench", false, true) { }
+				: base("EngineerRepair", 6, "goldwrench", false, true, false) { }
 
 			public override bool CanTargetActor(Actor self, Actor target, TargetModifiers modifiers, ref string cursor)
 			{
@@ -132,6 +132,11 @@ namespace OpenRA.Mods.Common.Traits
 					cursor = "goldwrench-blocked";
 
 				return true;
+			}
+
+			public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+			{
+				return false;
 			}
 		}
 	}

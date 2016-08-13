@@ -104,7 +104,7 @@ namespace OpenRA.Mods.Common.Traits
 		class DemolitionOrderTargeter : UnitOrderTargeter
 		{
 			public DemolitionOrderTargeter(string cursor)
-				: base("C4", 6, cursor, true, false) { }
+				: base("C4", 6, cursor, true, false, false) { }
 
 			public override bool CanTargetActor(Actor self, Actor target, TargetModifiers modifiers, ref string cursor)
 			{
@@ -118,6 +118,11 @@ namespace OpenRA.Mods.Common.Traits
 			public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
 			{
 				return target.Info.TraitInfos<IDemolishableInfo>().Any(i => i.IsValidTarget(target.Info, self));
+			}
+
+			public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+			{
+				return false;
 			}
 		}
 	}

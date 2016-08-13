@@ -19,7 +19,7 @@ namespace OpenRA.Mods.Common.Orders
 		readonly string cursor;
 		readonly bool targetEnemyUnits, targetAllyUnits;
 
-		public UnitOrderTargeter(string order, int priority, string cursor, bool targetEnemyUnits, bool targetAllyUnits)
+		public UnitOrderTargeter(string order, int priority, string cursor, bool targetEnemyUnits, bool targetAllyUnits, bool targetTerrain)
 		{
 			OrderID = order;
 			OrderPriority = priority;
@@ -33,16 +33,20 @@ namespace OpenRA.Mods.Common.Orders
 		public bool? ForceAttack = null;
 		public bool TargetOverridesSelection(TargetModifiers modifiers) { return true; }
 
+		public abstract bool CanTargetTerrain(Actor self, IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor);
 		public abstract bool CanTargetActor(Actor self, Actor target, TargetModifiers modifiers, ref string cursor);
 		public abstract bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor);
 
 		public bool CanTarget(Actor self, Target target, ref IEnumerable<UIOrder> uiOrders, ref TargetModifiers modifiers)
 		{
-			if (target.Type != TargetType.Actor && target.Type != TargetType.FrozenActor)
+			if (target.Type == TargetType.Invalid)
 				return false;
 
 			if (ForceAttack != null && modifiers.HasModifier(TargetModifiers.ForceAttack) != ForceAttack)
 				return false;
+
+			if (target.Type == TargetType.Terrain)
+				return CheckUIOrders(ref uiOrders);
 
 			var owner = target.Type == TargetType.FrozenActor ? target.FrozenActor.Owner : target.Actor.Owner;
 			var playerRelationship = self.Owner.Stances[owner];
@@ -53,19 +57,24 @@ namespace OpenRA.Mods.Common.Orders
 			if (!modifiers.HasModifier(TargetModifiers.ForceAttack) && playerRelationship == Stance.Enemy && !targetEnemyUnits)
 				return false;
 
-			return true;
+			return CheckUIOrders(ref uiOrders);
 		}
+
+		public virtual bool CheckUIOrders(ref IEnumerable<UIOrder> uiOrders) { return false; }
 
 		public bool SetupTarget(Actor self, Target target, List<Actor> othersAtTarget, ref IEnumerable<UIOrder> uiOrders, ref TargetModifiers modifiers, ref string cursor)
 		{
 			cursor = this.cursor;
 			IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
+			if (target.Type == TargetType.Terrain)
+				return CanTargetTerrain(self, target.Positions, modifiers, ref cursor);
+
 			return target.Type == TargetType.FrozenActor ?
 				CanTargetFrozenActor(self, target.FrozenActor, modifiers, ref cursor) :
 				CanTargetActor(self, target.Actor, modifiers, ref cursor);
 		}
 
-		public void OrderIssued(Actor self) { }
+		public virtual void OrderIssued(Actor self) { }
 
 		public virtual bool IsQueued { get; protected set; }
 	}
@@ -75,7 +84,7 @@ namespace OpenRA.Mods.Common.Orders
 		readonly HashSet<string> targetTypes;
 
 		public TargetTypeOrderTargeter(HashSet<string> targetTypes, string order, int priority, string cursor, bool targetEnemyUnits, bool targetAllyUnits)
-			: base(order, priority, cursor, targetEnemyUnits, targetAllyUnits)
+			: base(order, priority, cursor, targetEnemyUnits, targetAllyUnits, false)
 		{
 			this.targetTypes = targetTypes;
 		}
@@ -88,6 +97,11 @@ namespace OpenRA.Mods.Common.Orders
 		public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
 		{
 			return target.TargetTypes.Overlaps(targetTypes);
+		}
+
+		public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+		{
+			return false;
 		}
 	}
 }

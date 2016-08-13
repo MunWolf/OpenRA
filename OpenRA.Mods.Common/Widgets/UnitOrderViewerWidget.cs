@@ -46,7 +46,8 @@ namespace OpenRA.Mods.Common.Widgets
 			{
 				if (order.Info.Hotkey.Key == e.Key && order.Info.Hotkey.Modifiers == e.Modifiers)
 				{
-					order.ToogleOrder();
+					order.IssueOrder();
+					// order.ToogleOrder();
 					return true;
 				}
 			}

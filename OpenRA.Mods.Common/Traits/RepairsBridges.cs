@@ -97,7 +97,7 @@ namespace OpenRA.Mods.Common.Traits
 			readonly RepairsBridgesInfo info;
 
 			public RepairBridgeOrderTargeter(RepairsBridgesInfo info)
-				: base("RepairBridge", 6, info.TargetCursor, true, true)
+				: base("RepairBridge", 6, info.TargetCursor, true, true, false)
 			{
 				this.info = info;
 			}
@@ -127,6 +127,11 @@ namespace OpenRA.Mods.Common.Traits
 			public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
 			{
 				// TODO: Bridges don't yet support FrozenUnderFog.
+				return false;
+			}
+
+			public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+			{
 				return false;
 			}
 		}

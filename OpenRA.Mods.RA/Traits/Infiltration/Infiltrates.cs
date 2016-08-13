@@ -126,7 +126,7 @@ namespace OpenRA.Mods.RA.Traits
 		readonly InfiltratesInfo info;
 
 		public InfiltrationOrderTargeter(InfiltratesInfo info)
-			: base("Infiltrate", 7, "enter", true, false)
+			: base("Infiltrate", 7, "enter", true, false, false)
 		{
 			this.info = info;
 		}
@@ -149,6 +149,11 @@ namespace OpenRA.Mods.RA.Traits
 				return false;
 
 			return info.Types.Overlaps(target.Info.TraitInfos<ITargetableInfo>().SelectMany(ti => ti.GetTargetTypes()));
+		}
+
+		public override bool CanTargetTerrain(Actor self, IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+		{
+			return false;
 		}
 	}
 }

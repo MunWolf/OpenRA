@@ -155,6 +155,7 @@
     <Compile Include="Effects\RallyPointIndicator.cs" />
     <Compile Include="Effects\RepairIndicator.cs" />
     <Compile Include="Effects\SpriteEffect.cs" />
+    <Compile Include="Orders\UIOrderTargeter.cs" />
     <Compile Include="Projectiles\AreaBeam.cs" />
     <Compile Include="Projectiles\Bullet.cs" />
     <Compile Include="Projectiles\GravityBomb.cs" />

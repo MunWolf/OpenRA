@@ -93,6 +93,10 @@
 	Passenger:
 		CargoType: Vehicle
 	AttackMove:
+		Orders:
+			AttackMove:
+				Name: Attack Move
+				Hotkey: A
 	HiddenUnderFog:
 	ActorLostNotification:
 	ProximityCaptor:
@@ -208,6 +212,10 @@
 			ElectricityDeath: 6
 		CrushedSequence: die-crushed
 	AttackMove:
+		Orders:
+			AttackMove:
+				Name: Attack Move
+				Hotkey: A
 	Passenger:
 		CargoType: Infantry
 	HiddenUnderFog:
@@ -322,6 +330,10 @@
 		TargetTypes: Ground, Water, Repair
 	HiddenUnderFog:
 	AttackMove:
+		Orders:
+			AttackMove:
+				Name: Attack Move
+				Hotkey: A
 	ActorLostNotification:
 		Notification: NavalUnitLost
 	ProximityCaptor:
@@ -375,6 +387,10 @@
 	HiddenUnderFog:
 		Type: CenterPosition
 	AttackMove:
+		Orders:
+			AttackMove:
+				Name: Attack Move
+				Hotkey: A
 	Guard:
 	Guardable:
 	ActorLostNotification:

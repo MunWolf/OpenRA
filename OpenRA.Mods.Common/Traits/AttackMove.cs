@@ -12,18 +12,41 @@
 using System.Drawing;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Traits;
+using OpenRA.Mods.Common.Orders;
+using System.Collections.Generic;
 
 namespace OpenRA.Mods.Common.Traits
 {
 	[Desc("Provides access to the attack-move command, which will make the actor automatically engage viable targets while moving to the destination.")]
-	class AttackMoveInfo : ITraitInfo, Requires<IMoveInfo>
+	class AttackMoveInfo : ITraitInfo, IIssueOrderInfo, Requires<IMoveInfo>
 	{
-		[VoiceReference] public readonly string Voice = "Action";
+		[FieldLoader.LoadUsing("LoadOrders")]
+		[Desc("Information for displaying the orders for the trait.")]
+		public readonly Dictionary<string, OrderInfo> Orders = null;
+
+		[VoiceReference]
+		public readonly string Voice = "Action";
+
+		static object LoadOrders(MiniYaml yaml)
+		{
+			var orders = new Dictionary<string, OrderInfo>();
+			var orderCollection = yaml.Nodes.Find(n => n.Key == "Orders");
+			if (orderCollection == null)
+				return orders;
+
+			var order = orderCollection.Value.Nodes.Find(n => n.Key == "AttackMove");
+			if (order != null)
+				orders.Add(order.Key, FieldLoader.Load<OrderInfo>(order.Value));
+
+			return orders;
+		}
+
+		public Dictionary<string, OrderInfo> IssuableOrders { get { return Orders; } }
 
 		public object Create(ActorInitializer init) { return new AttackMove(init.Self, this); }
 	}
 
-	class AttackMove : IResolveOrder, IOrderVoice, INotifyIdle, ISync
+	class AttackMove : IResolveOrder, IIssueOrder, IOrderVoice, INotifyIdle, ISync
 	{
 		[Sync] public CPos _targetLocation { get { return TargetLocation.HasValue ? TargetLocation.Value : CPos.Zero; } }
 		public CPos? TargetLocation = null;
@@ -35,6 +58,29 @@ namespace OpenRA.Mods.Common.Traits
 		{
 			move = self.Trait<IMove>();
 			this.info = info;
+		}
+
+		public IIssueOrderInfo OrderInfo
+		{
+			get { return info; }
+		}
+
+		public System.Collections.Generic.IEnumerable<IOrderTargeter> Orders
+		{
+			get { yield return new UIOrderTargeter("AttackMove", 5, "attackmove", true, true, true); }
+		}
+
+		public Order IssueOrder(Actor self, IOrderTargeter order, Target target, bool queued)
+		{
+			switch (order.OrderID)
+			{
+				case "AttackMove":
+					var newOrder = new Order("AttackMove", self, queued);
+					newOrder.TargetLocation = self.World.Map.CellContaining(target.CenterPosition);
+					return newOrder;
+				default:
+					return null;
+			}
 		}
 
 		public string VoicePhraseForOrder(Actor self, Order order)

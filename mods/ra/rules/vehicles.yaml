@@ -458,6 +458,9 @@ MNLY.AT:
 		Range: 5c0
 	Minelayer:
 		Mine: MINV
+			BeginMinefield:
+				Name: Minefield
+				Hotkey: L
 	MineImmune:
 	AmmoPool:
 		Ammo: 5

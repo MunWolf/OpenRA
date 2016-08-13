@@ -100,7 +100,7 @@ namespace OpenRA.Mods.Common.Traits
 			readonly bool sabotage;
 
 			public CaptureOrderTargeter(bool sabotage)
-				: base("CaptureActor", 6, "enter", true, true)
+				: base("CaptureActor", 6, "enter", true, true, false)
 			{
 				this.sabotage = sabotage;
 			}
@@ -140,6 +140,11 @@ namespace OpenRA.Mods.Common.Traits
 					? capturesInfo.EnterCursor : capturesInfo.SabotageCursor;
 
 				return true;
+			}
+
+			public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+			{
+				return false;
 			}
 		}
 	}

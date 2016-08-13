@@ -82,7 +82,7 @@ namespace OpenRA.Mods.Common.Traits
 		class SupplyTruckOrderTargeter : UnitOrderTargeter
 		{
 			public SupplyTruckOrderTargeter()
-				: base("DeliverSupplies", 5, "enter", false, true)
+				: base("DeliverSupplies", 5, "enter", false, true, false)
 			{
 			}
 
@@ -94,6 +94,11 @@ namespace OpenRA.Mods.Common.Traits
 			public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
 			{
 				return target.Info.HasTraitInfo<AcceptsSuppliesInfo>();
+			}
+
+			public override bool CanTargetTerrain(Actor self, System.Collections.Generic.IEnumerable<WPos> target, TargetModifiers modifiers, ref string cursor)
+			{
+				return false;
 			}
 		}
 	}
