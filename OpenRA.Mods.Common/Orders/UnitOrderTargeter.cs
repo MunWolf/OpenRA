@@ -60,7 +60,7 @@ namespace OpenRA.Mods.Common.Orders
 			return CheckUIOrders(ref uiOrders);
 		}
 
-		public virtual bool CheckUIOrders(ref IEnumerable<UIOrder> uiOrders) { return false; }
+		public virtual bool CheckUIOrders(ref IEnumerable<UIOrder> uiOrders) { return true; }
 
 		public bool SetupTarget(Actor self, Target target, List<Actor> othersAtTarget, ref IEnumerable<UIOrder> uiOrders, ref TargetModifiers modifiers, ref string cursor)
 		{

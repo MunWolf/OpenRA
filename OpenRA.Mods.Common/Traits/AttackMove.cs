@@ -67,7 +67,7 @@ namespace OpenRA.Mods.Common.Traits
 
 		public System.Collections.Generic.IEnumerable<IOrderTargeter> Orders
 		{
-			get { yield return new UIOrderTargeter("AttackMove", 5, "attackmove", true, true, true); }
+			get { yield return new UIOrderTargeter("AttackMove", 1, "attackmove", true, true, true); }
 		}
 
 		public Order IssueOrder(Actor self, IOrderTargeter order, Target target, bool queued)
